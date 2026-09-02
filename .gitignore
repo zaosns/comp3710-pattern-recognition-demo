@@ -1,0 +1,13 @@
+*.zip
+*.pdf
+data/*
+!data/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+outputs/**
+!outputs/**/.gitkeep
+__pycache__/
+*.py[cod]
+.DS_Store
+.ipynb_checkpoints/
+
