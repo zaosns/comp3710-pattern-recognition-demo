@@ -450,7 +450,7 @@ def plot_benchmarks(rows: list[dict[str, object]], output_path: Path) -> None:
 
 def save_benchmark_csv(rows: list[dict[str, object]], output_path: Path) -> None:
     with output_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -462,7 +462,7 @@ def save_rows_csv(
     if not rows:
         raise ValueError("cannot save an empty result table")
     with output_path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
