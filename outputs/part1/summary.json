@@ -1,0 +1,19 @@
+{
+  "fundamental_frequency_hz": 1.0,
+  "duration_seconds": 1.0,
+  "spectrum_samples": 2048,
+  "spectrum_fourier_terms": 50,
+  "highest_harmonic_index": 99,
+  "benchmark_repeats": 3,
+  "selected_torch_device": "mps",
+  "torch_square_wave_matches_numpy": true,
+  "torch_fourier_series_matches_numpy": true,
+  "maximum_harmonic_amplitude_error": 1.3374717999781183e-15,
+  "all_results_match_numpy_fft": true,
+  "fastest_method_by_size": {
+    "256": "NumPy FFT",
+    "512": "NumPy FFT",
+    "1024": "NumPy FFT",
+    "2048": "NumPy FFT"
+  }
+}

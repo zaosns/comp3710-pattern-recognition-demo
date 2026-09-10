@@ -6,8 +6,14 @@ checkpoints/*
 !checkpoints/.gitkeep
 outputs/**
 !outputs/**/.gitkeep
+!outputs/part1/
+!outputs/part1/benchmark.csv
+!outputs/part1/benchmark.png
+!outputs/part1/harmonics.csv
+!outputs/part1/reconstructions.png
+!outputs/part1/spectrum.png
+!outputs/part1/summary.json
 __pycache__/
 *.py[cod]
 .DS_Store
 .ipynb_checkpoints/
-
