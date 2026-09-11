@@ -13,6 +13,13 @@ outputs/**
 !outputs/part1/reconstructions.png
 !outputs/part1/spectrum.png
 !outputs/part1/summary.json
+!outputs/part2/
+!outputs/part2/classification_report.txt
+!outputs/part2/compactness.png
+!outputs/part2/confusion_matrix.png
+!outputs/part2/eigenfaces.png
+!outputs/part2/metrics.json
+!outputs/part2/predictions.csv
 __pycache__/
 *.py[cod]
 .DS_Store

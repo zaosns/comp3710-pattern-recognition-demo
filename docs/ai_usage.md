@@ -16,3 +16,13 @@ reviewed, and must be explainable during the demonstration.
 - During a second requirements review, identified that the first implementation
   had ported only the DFT to PyTorch. Added and tested the required PyTorch square
   wave and Fourier-series implementations before treating Part 1 as complete.
+
+## Part 2
+
+- Used AI to structure the NumPy PCA and Random Forest experiment into small,
+  independently tested functions.
+- Corrected two issues in the supplied example: the textual requirement says the
+  split is stratified but the shown call omits `stratify=y`, and explained
+  variance must use the training sample count rather than the full dataset count.
+- Added synthetic tests that ensure held-out data cannot influence the fitted PCA
+  mean or principal directions.

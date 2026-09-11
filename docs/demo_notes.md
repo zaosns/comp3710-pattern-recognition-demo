@@ -40,3 +40,46 @@
    aligned frequencies, aliasing above Nyquist, and windowing can create
    differences. A real signal also has conjugate components at positive and
    negative frequencies, so the one-sided plot doubles non-DC magnitudes.
+
+## Part 2 — Eigenfaces and Random Forest
+
+### What the code demonstrates
+
+- PCA learns a data-dependent orthonormal basis, unlike the predefined harmonic
+  basis used by the Fourier transform.
+- Each flattened face is centred with the training mean before NumPy SVD. The
+  first 150 rows of `Vh` are the principal directions/eigenfaces.
+- Projection `(X - mean) @ components.T` converts each 1,850-pixel face into 150
+  face-space features for the Random Forest.
+- The split is stratified and the PCA mean/components are fitted only on the
+  training split, preventing test-data leakage.
+
+### Likely questions
+
+1. **Why centre the faces?** PCA describes variation around the mean; without
+   centring, the first direction can mainly represent overall brightness.
+2. **What do U, S, and Vh mean?** For `X = U S Vh`, rows of `Vh` are feature-space
+   directions, while squared singular values divided by `n_train - 1` are the
+   variances along those directions.
+3. **Why use only 150 components?** They provide a compact representation that
+   removes low-variance directions while retaining most useful variation.
+4. **Why fit PCA before the Random Forest?** PCA supplies compact continuous
+   features; the forest then learns nonlinear class decision boundaries.
+5. **Why is the test set never used for PCA fitting?** Letting it affect the mean
+   or eigenfaces leaks evaluation information and produces an optimistic score.
+6. **Why stratify?** It preserves the class proportions in both splits, which is
+   important because LFW identity counts are not equal.
+7. **Why may eigenfaces have reversed colours compared with another run?** An
+   eigenvector and its negative describe the same axis, so SVD component signs
+   are not uniquely determined.
+
+### Observed result
+
+- The LFW subset has 1,288 images, 1,850 pixels per image, and seven identities.
+- The stratified split contains 966 training and 322 testing images.
+- The first 150 components explain 94.65% of training variance.
+- Random Forest test accuracy is 64.29%; weighted F1 is 59.67%, while macro F1
+  is 46.54%.
+- George W Bush has the largest class and 93.98% recall. Several minority
+  identities are incorrectly predicted as this majority class, which explains
+  why overall accuracy is considerably higher than macro recall/F1.

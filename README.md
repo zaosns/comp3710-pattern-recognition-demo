@@ -7,7 +7,7 @@ Recognition demonstration.
 
 - [x] Project structure and reproducible local environment
 - [x] Part 1: Fourier-series reconstruction and DFT benchmarks
-- [ ] Part 2: Eigenfaces and Random Forest classification
+- [x] Part 2: Eigenfaces and Random Forest classification
 - [ ] Part 3.1: LFW CNN classifier
 - [ ] Part 3.2: DAWNBench ResNet-18 on CIFAR-10
 - [ ] Part 4: VAE, UNet, and optional GAN on OASIS
@@ -63,3 +63,34 @@ python -m pytest tests/test_part1_dft.py -q
 ![Odd-harmonic DFT spectrum](outputs/part1/spectrum.png)
 
 ![DFT runtime comparison](outputs/part1/benchmark.png)
+
+## Part 2 — Eigenfaces and Random Forest
+
+Run the LFW experiment from the repository root:
+
+```bash
+python -m part2_eigenfaces.main
+```
+
+The first run downloads the funneled LFW dataset into the ignored `data/`
+directory. PCA is fitted with NumPy SVD using only the stratified training split;
+the same training mean and eigenfaces are then used to transform the test split.
+The projected face-space features are classified with a reproducible Random
+Forest. Figures, predictions, and metrics are written to `outputs/part2/`.
+
+With the assignment parameters, 150 components explain 94.65% of the training
+variance and the Random Forest achieves 64.29% test accuracy. The confusion
+matrix shows that class imbalance favours the majority identity, so the
+per-class report is retained alongside the aggregate score.
+
+Run its unit tests with:
+
+```bash
+python -m pytest tests/test_part2_eigenfaces.py -q
+```
+
+![LFW mean face and eigenfaces](outputs/part2/eigenfaces.png)
+
+![PCA compactness](outputs/part2/compactness.png)
+
+![Random Forest confusion matrix](outputs/part2/confusion_matrix.png)
