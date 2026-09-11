@@ -26,3 +26,13 @@ reviewed, and must be explainable during the demonstration.
   variance must use the training sample count rather than the full dataset count.
 - Added synthetic tests that ensure held-out data cannot influence the fitted PCA
   mean or principal directions.
+
+## Part 3.1
+
+- Used AI to translate the CNN diagram in the course overview into explicit
+  PyTorch modules and to structure the training, validation, and evaluation code.
+- Added checks for the specified input shape and architecture, mutually exclusive
+  stratified splits, training-only normalisation, gradient updates, and inference
+  ordering.
+- Kept the model checkpoint selection independent of the test set and retained
+  both correct and incorrect predictions for transparent demonstration evidence.

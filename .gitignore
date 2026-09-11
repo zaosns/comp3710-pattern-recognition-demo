@@ -20,6 +20,13 @@ outputs/**
 !outputs/part2/eigenfaces.png
 !outputs/part2/metrics.json
 !outputs/part2/predictions.csv
+!outputs/part3_lfw/
+!outputs/part3_lfw/classification_report.txt
+!outputs/part3_lfw/confusion_matrix.png
+!outputs/part3_lfw/learning_curves.png
+!outputs/part3_lfw/metrics.json
+!outputs/part3_lfw/predictions.csv
+!outputs/part3_lfw/sample_predictions.png
 __pycache__/
 *.py[cod]
 .DS_Store

@@ -8,7 +8,7 @@ Recognition demonstration.
 - [x] Project structure and reproducible local environment
 - [x] Part 1: Fourier-series reconstruction and DFT benchmarks
 - [x] Part 2: Eigenfaces and Random Forest classification
-- [ ] Part 3.1: LFW CNN classifier
+- [x] Part 3.1: LFW CNN classifier
 - [ ] Part 3.2: DAWNBench ResNet-18 on CIFAR-10
 - [ ] Part 4: VAE, UNet, and optional GAN on OASIS
 
@@ -94,3 +94,34 @@ python -m pytest tests/test_part2_eigenfaces.py -q
 ![PCA compactness](outputs/part2/compactness.png)
 
 ![Random Forest confusion matrix](outputs/part2/confusion_matrix.png)
+
+## Part 3.1 — LFW convolutional classifier
+
+Run the course-specified face CNN with automatic CUDA/MPS/CPU selection:
+
+```bash
+python -m part3_cnn.lfw_cnn
+```
+
+The network follows the slide architecture: two `3x3`, 32-channel convolution
+blocks with batch normalisation, ReLU, and `2x2` max pooling, followed by a
+dense layer, dropout, and seven output classes. Training, validation, and test
+indices are stratified. Normalisation statistics and model selection use no test
+data. The best validation checkpoint is evaluated on the test set only once.
+
+On Apple MPS, the 453,031-parameter model reached 88.51% test accuracy after 25
+epochs (macro F1 83.71%, weighted F1 88.14%). The checkpoint is kept locally in
+the ignored `checkpoints/` directory; compact evidence is retained in
+`outputs/part3_lfw/`.
+
+Run its unit tests with:
+
+```bash
+python -m pytest tests/test_part3_cnn.py -q
+```
+
+![LFW CNN learning curves](outputs/part3_lfw/learning_curves.png)
+
+![LFW CNN confusion matrix](outputs/part3_lfw/confusion_matrix.png)
+
+![Representative LFW predictions](outputs/part3_lfw/sample_predictions.png)

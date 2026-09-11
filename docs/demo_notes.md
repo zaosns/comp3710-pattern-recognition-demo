@@ -83,3 +83,49 @@
 - George W Bush has the largest class and 93.98% recall. Several minority
   identities are incorrectly predicted as this majority class, which explains
   why overall accuracy is considerably higher than macro recall/F1.
+
+## Part 3.1 — LFW CNN
+
+### What the code demonstrates
+
+- The input is a batch of grayscale tensors shaped `N x 1 x 50 x 37`.
+- Each `3x3` convolution learns 32 local feature maps. Batch normalisation
+  stabilises their scale, ReLU introduces nonlinearity, and `2x2` max pooling
+  reduces the spatial dimensions.
+- After two convolution blocks, the `32 x 12 x 9` representation is flattened,
+  passed through a 128-unit dense layer and dropout, then mapped to seven logits.
+- Cross-entropy trains the logits with Adam. Dropout is active only in training;
+  batch-normalisation running statistics are used for validation and testing.
+- The 60/15/25 train/validation/test split is stratified. Only training images
+  determine normalisation, validation chooses the checkpoint, and test images
+  are evaluated after training.
+
+### Likely questions
+
+1. **Why is a CNN stronger than PCA plus Random Forest here?** Convolutions learn
+   hierarchical, spatial features directly for the classification objective;
+   PCA keeps high-variance linear directions that are not necessarily the most
+   discriminative.
+2. **Why use batch normalisation?** It keeps intermediate activations on a more
+   stable scale and usually makes optimisation faster and less sensitive to
+   parameter initialisation.
+3. **Why max pooling?** It reduces computation and adds limited tolerance to
+   small translations while retaining strong local responses.
+4. **Why dropout?** Randomly suppressing hidden activations during training
+   discourages co-adaptation and reduces overfitting. It is disabled by
+   `model.eval()` during evaluation.
+5. **Why not tune on the test set?** Doing so leaks evaluation information. The
+   validation set selects the best epoch; the test set estimates final
+   generalisation.
+6. **What does the output contain?** Seven raw logits. Cross-entropy applies the
+   equivalent of log-softmax internally, and `argmax` selects the class.
+
+### Observed result
+
+- The model contains 453,031 trainable parameters and uses Apple MPS.
+- The stratified split contains 772 training, 194 validation, and 322 test faces.
+- The best checkpoint was epoch 25, with 88.66% validation accuracy.
+- Test accuracy is 88.51%; macro F1 is 83.71% and weighted F1 is 88.14%.
+- The CNN improves substantially over the Part 2 Random Forest result, including
+  much stronger minority-class recall, although minority identities remain the
+  hardest cases.

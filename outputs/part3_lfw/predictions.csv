@@ -1,0 +1,323 @@
+dataset_index,actual_label,predicted_label,correct
+244,Colin Powell,Colin Powell,True
+656,Colin Powell,Colin Powell,True
+772,George W Bush,George W Bush,True
+841,George W Bush,George W Bush,True
+87,Colin Powell,Colin Powell,True
+962,George W Bush,George W Bush,True
+351,George W Bush,George W Bush,True
+83,George W Bush,George W Bush,True
+229,George W Bush,George W Bush,True
+366,Colin Powell,Colin Powell,True
+840,George W Bush,George W Bush,True
+1202,Ariel Sharon,Ariel Sharon,True
+1003,Tony Blair,Colin Powell,False
+989,Hugo Chavez,Tony Blair,False
+579,George W Bush,George W Bush,True
+1258,George W Bush,George W Bush,True
+1065,George W Bush,George W Bush,True
+676,Hugo Chavez,George W Bush,False
+1230,Gerhard Schroeder,Gerhard Schroeder,True
+381,George W Bush,George W Bush,True
+274,George W Bush,George W Bush,True
+459,Gerhard Schroeder,Gerhard Schroeder,True
+930,Colin Powell,Colin Powell,True
+299,Gerhard Schroeder,George W Bush,False
+385,George W Bush,George W Bush,True
+805,Colin Powell,Colin Powell,True
+66,Colin Powell,Colin Powell,True
+216,George W Bush,George W Bush,True
+227,George W Bush,George W Bush,True
+657,Colin Powell,Colin Powell,True
+341,Colin Powell,Colin Powell,True
+23,George W Bush,George W Bush,True
+1169,Donald Rumsfeld,Donald Rumsfeld,True
+1187,Colin Powell,Colin Powell,True
+309,Donald Rumsfeld,Donald Rumsfeld,True
+486,Donald Rumsfeld,George W Bush,False
+1059,Tony Blair,Ariel Sharon,False
+1210,Colin Powell,Colin Powell,True
+541,Colin Powell,Colin Powell,True
+963,George W Bush,George W Bush,True
+437,Ariel Sharon,George W Bush,False
+197,Colin Powell,Colin Powell,True
+264,Colin Powell,Colin Powell,True
+1079,Ariel Sharon,Colin Powell,False
+533,Hugo Chavez,Hugo Chavez,True
+1200,Tony Blair,Tony Blair,True
+522,Colin Powell,Colin Powell,True
+286,Donald Rumsfeld,Donald Rumsfeld,True
+1066,George W Bush,George W Bush,True
+1235,George W Bush,George W Bush,True
+21,George W Bush,George W Bush,True
+1274,George W Bush,George W Bush,True
+345,Colin Powell,Colin Powell,True
+1216,Colin Powell,Colin Powell,True
+1173,George W Bush,George W Bush,True
+1189,Ariel Sharon,Ariel Sharon,True
+1220,Colin Powell,Colin Powell,True
+614,Ariel Sharon,Ariel Sharon,True
+452,George W Bush,George W Bush,True
+14,Gerhard Schroeder,Hugo Chavez,False
+566,Colin Powell,Colin Powell,True
+39,Hugo Chavez,Hugo Chavez,True
+708,George W Bush,George W Bush,True
+248,George W Bush,George W Bush,True
+232,Colin Powell,Colin Powell,True
+584,George W Bush,George W Bush,True
+1053,Hugo Chavez,Hugo Chavez,True
+1264,Colin Powell,Colin Powell,True
+408,Tony Blair,Tony Blair,True
+19,George W Bush,George W Bush,True
+1158,Colin Powell,Colin Powell,True
+258,George W Bush,George W Bush,True
+1278,Colin Powell,Colin Powell,True
+411,Donald Rumsfeld,Donald Rumsfeld,True
+433,Hugo Chavez,Tony Blair,False
+57,Gerhard Schroeder,Gerhard Schroeder,True
+24,Tony Blair,Tony Blair,True
+164,George W Bush,George W Bush,True
+1086,George W Bush,Donald Rumsfeld,False
+518,George W Bush,Tony Blair,False
+477,George W Bush,George W Bush,True
+319,Colin Powell,Colin Powell,True
+58,George W Bush,George W Bush,True
+709,Colin Powell,Colin Powell,True
+419,Ariel Sharon,Ariel Sharon,True
+875,Gerhard Schroeder,Gerhard Schroeder,True
+43,Donald Rumsfeld,Donald Rumsfeld,True
+1044,Colin Powell,Colin Powell,True
+150,Hugo Chavez,Hugo Chavez,True
+565,Donald Rumsfeld,Donald Rumsfeld,True
+237,George W Bush,George W Bush,True
+337,Donald Rumsfeld,Donald Rumsfeld,True
+674,Tony Blair,Donald Rumsfeld,False
+985,Colin Powell,Colin Powell,True
+647,George W Bush,George W Bush,True
+1153,Gerhard Schroeder,Gerhard Schroeder,True
+114,George W Bush,George W Bush,True
+1244,George W Bush,George W Bush,True
+997,George W Bush,George W Bush,True
+1043,George W Bush,George W Bush,True
+501,Colin Powell,Colin Powell,True
+228,George W Bush,George W Bush,True
+516,Hugo Chavez,Hugo Chavez,True
+426,George W Bush,George W Bush,True
+1131,Tony Blair,Tony Blair,True
+1213,George W Bush,George W Bush,True
+85,George W Bush,George W Bush,True
+458,Colin Powell,Colin Powell,True
+1170,George W Bush,George W Bush,True
+213,George W Bush,George W Bush,True
+725,Colin Powell,Colin Powell,True
+1277,Hugo Chavez,George W Bush,False
+902,George W Bush,George W Bush,True
+178,George W Bush,George W Bush,True
+1105,George W Bush,George W Bush,True
+64,Gerhard Schroeder,Donald Rumsfeld,False
+1108,George W Bush,George W Bush,True
+1091,Colin Powell,Colin Powell,True
+659,George W Bush,George W Bush,True
+34,George W Bush,George W Bush,True
+968,Ariel Sharon,Ariel Sharon,True
+192,Colin Powell,Colin Powell,True
+162,Donald Rumsfeld,Colin Powell,False
+81,George W Bush,George W Bush,True
+512,Ariel Sharon,Colin Powell,False
+59,Donald Rumsfeld,Donald Rumsfeld,True
+699,George W Bush,George W Bush,True
+689,George W Bush,George W Bush,True
+255,Hugo Chavez,Hugo Chavez,True
+590,George W Bush,George W Bush,True
+899,Hugo Chavez,George W Bush,False
+769,Tony Blair,Tony Blair,True
+918,Donald Rumsfeld,Donald Rumsfeld,True
+303,Donald Rumsfeld,Donald Rumsfeld,True
+37,Colin Powell,Colin Powell,True
+9,Ariel Sharon,Ariel Sharon,True
+880,George W Bush,George W Bush,True
+120,Gerhard Schroeder,Gerhard Schroeder,True
+944,Donald Rumsfeld,George W Bush,False
+399,George W Bush,George W Bush,True
+620,Gerhard Schroeder,Gerhard Schroeder,True
+915,George W Bush,George W Bush,True
+589,George W Bush,George W Bush,True
+787,George W Bush,George W Bush,True
+549,Colin Powell,Colin Powell,True
+238,Donald Rumsfeld,Donald Rumsfeld,True
+339,Tony Blair,Donald Rumsfeld,False
+10,George W Bush,George W Bush,True
+1008,Tony Blair,Tony Blair,True
+1161,George W Bush,George W Bush,True
+1022,Colin Powell,Colin Powell,True
+143,Colin Powell,Colin Powell,True
+627,George W Bush,George W Bush,True
+1194,Donald Rumsfeld,Donald Rumsfeld,True
+967,Donald Rumsfeld,Donald Rumsfeld,True
+675,George W Bush,George W Bush,True
+1056,George W Bush,George W Bush,True
+677,George W Bush,George W Bush,True
+323,Tony Blair,Tony Blair,True
+165,Donald Rumsfeld,Donald Rumsfeld,True
+615,George W Bush,George W Bush,True
+475,Tony Blair,Tony Blair,True
+1,Tony Blair,Tony Blair,True
+843,George W Bush,George W Bush,True
+422,George W Bush,George W Bush,True
+101,George W Bush,George W Bush,True
+537,George W Bush,George W Bush,True
+903,George W Bush,George W Bush,True
+1280,Tony Blair,Tony Blair,True
+109,George W Bush,George W Bush,True
+423,George W Bush,George W Bush,True
+553,George W Bush,George W Bush,True
+568,Gerhard Schroeder,George W Bush,False
+79,George W Bush,George W Bush,True
+1117,Donald Rumsfeld,Donald Rumsfeld,True
+317,Tony Blair,Tony Blair,True
+731,Colin Powell,Colin Powell,True
+151,Colin Powell,Colin Powell,True
+922,George W Bush,George W Bush,True
+948,Colin Powell,Tony Blair,False
+494,Ariel Sharon,Ariel Sharon,True
+693,Colin Powell,Colin Powell,True
+1035,George W Bush,George W Bush,True
+1047,Tony Blair,Tony Blair,True
+1192,Donald Rumsfeld,Donald Rumsfeld,True
+826,Tony Blair,Tony Blair,True
+106,Gerhard Schroeder,Gerhard Schroeder,True
+479,Gerhard Schroeder,Gerhard Schroeder,True
+859,Hugo Chavez,Hugo Chavez,True
+1095,Tony Blair,Tony Blair,True
+38,Ariel Sharon,Ariel Sharon,True
+790,George W Bush,George W Bush,True
+1012,Ariel Sharon,George W Bush,False
+664,Donald Rumsfeld,Donald Rumsfeld,True
+583,George W Bush,George W Bush,True
+538,George W Bush,George W Bush,True
+1019,Gerhard Schroeder,Gerhard Schroeder,True
+591,Gerhard Schroeder,Gerhard Schroeder,True
+3,Colin Powell,Colin Powell,True
+740,George W Bush,George W Bush,True
+823,Donald Rumsfeld,George W Bush,False
+221,George W Bush,George W Bush,True
+1253,Tony Blair,Tony Blair,True
+455,Tony Blair,Tony Blair,True
+161,Gerhard Schroeder,Gerhard Schroeder,True
+861,Donald Rumsfeld,Donald Rumsfeld,True
+873,Colin Powell,Colin Powell,True
+958,Donald Rumsfeld,George W Bush,False
+463,George W Bush,George W Bush,True
+598,George W Bush,George W Bush,True
+796,Gerhard Schroeder,Tony Blair,False
+991,George W Bush,George W Bush,True
+953,Ariel Sharon,Ariel Sharon,True
+1080,Gerhard Schroeder,Gerhard Schroeder,True
+777,Gerhard Schroeder,George W Bush,False
+608,Tony Blair,Tony Blair,True
+196,George W Bush,George W Bush,True
+487,Tony Blair,Tony Blair,True
+1002,George W Bush,George W Bush,True
+808,George W Bush,George W Bush,True
+1231,Hugo Chavez,Hugo Chavez,True
+846,Colin Powell,Colin Powell,True
+384,George W Bush,George W Bush,True
+1155,George W Bush,George W Bush,True
+245,George W Bush,George W Bush,True
+931,Ariel Sharon,Ariel Sharon,True
+812,Tony Blair,Tony Blair,True
+636,Donald Rumsfeld,Donald Rumsfeld,True
+712,Colin Powell,Colin Powell,True
+44,George W Bush,George W Bush,True
+1009,George W Bush,George W Bush,True
+882,George W Bush,George W Bush,True
+322,Hugo Chavez,Hugo Chavez,True
+543,George W Bush,George W Bush,True
+600,George W Bush,George W Bush,True
+551,Colin Powell,Colin Powell,True
+825,George W Bush,George W Bush,True
+404,Ariel Sharon,Donald Rumsfeld,False
+1004,George W Bush,George W Bush,True
+563,Colin Powell,Colin Powell,True
+527,George W Bush,George W Bush,True
+597,Hugo Chavez,Hugo Chavez,True
+611,George W Bush,George W Bush,True
+1057,Hugo Chavez,Tony Blair,False
+1154,George W Bush,George W Bush,True
+814,Donald Rumsfeld,Colin Powell,False
+695,Tony Blair,George W Bush,False
+1183,Gerhard Schroeder,Gerhard Schroeder,True
+7,Gerhard Schroeder,Gerhard Schroeder,True
+1178,Colin Powell,Colin Powell,True
+177,Donald Rumsfeld,Donald Rumsfeld,True
+158,Gerhard Schroeder,Gerhard Schroeder,True
+428,Gerhard Schroeder,Gerhard Schroeder,True
+1072,George W Bush,George W Bush,True
+442,Tony Blair,Donald Rumsfeld,False
+1000,George W Bush,George W Bush,True
+425,Donald Rumsfeld,Donald Rumsfeld,True
+444,George W Bush,George W Bush,True
+529,George W Bush,George W Bush,True
+715,Colin Powell,Colin Powell,True
+981,George W Bush,George W Bush,True
+140,Ariel Sharon,Ariel Sharon,True
+170,Tony Blair,Tony Blair,True
+1249,George W Bush,George W Bush,True
+853,Ariel Sharon,Ariel Sharon,True
+1275,Colin Powell,Colin Powell,True
+152,George W Bush,George W Bush,True
+952,George W Bush,George W Bush,True
+328,Donald Rumsfeld,Donald Rumsfeld,True
+1185,George W Bush,George W Bush,True
+1236,Tony Blair,Tony Blair,True
+523,George W Bush,George W Bush,True
+669,Tony Blair,Tony Blair,True
+1138,George W Bush,George W Bush,True
+1238,George W Bush,George W Bush,True
+210,Tony Blair,Tony Blair,True
+33,Gerhard Schroeder,George W Bush,False
+939,George W Bush,George W Bush,True
+957,George W Bush,George W Bush,True
+478,Tony Blair,Tony Blair,True
+945,Gerhard Schroeder,Tony Blair,False
+179,Colin Powell,Colin Powell,True
+686,Colin Powell,Colin Powell,True
+76,Colin Powell,Colin Powell,True
+933,George W Bush,George W Bush,True
+1152,George W Bush,George W Bush,True
+781,Gerhard Schroeder,Donald Rumsfeld,False
+666,George W Bush,George W Bush,True
+279,George W Bush,George W Bush,True
+233,Colin Powell,Colin Powell,True
+1233,Ariel Sharon,Ariel Sharon,True
+434,George W Bush,George W Bush,True
+871,Colin Powell,Colin Powell,True
+127,Hugo Chavez,Hugo Chavez,True
+365,George W Bush,George W Bush,True
+364,Colin Powell,George W Bush,False
+362,George W Bush,George W Bush,True
+241,Colin Powell,Colin Powell,True
+226,George W Bush,George W Bush,True
+1050,George W Bush,George W Bush,True
+497,George W Bush,George W Bush,True
+691,Colin Powell,Colin Powell,True
+200,George W Bush,George W Bush,True
+629,Tony Blair,Tony Blair,True
+462,Tony Blair,Tony Blair,True
+562,Tony Blair,Tony Blair,True
+379,Donald Rumsfeld,Donald Rumsfeld,True
+710,George W Bush,George W Bush,True
+500,Colin Powell,Colin Powell,True
+191,Ariel Sharon,Ariel Sharon,True
+78,Tony Blair,Tony Blair,True
+424,George W Bush,George W Bush,True
+738,Hugo Chavez,Hugo Chavez,True
+371,George W Bush,George W Bush,True
+827,George W Bush,George W Bush,True
+890,George W Bush,George W Bush,True
+916,Colin Powell,Colin Powell,True
+1224,George W Bush,George W Bush,True
+618,Donald Rumsfeld,Colin Powell,False
+472,Gerhard Schroeder,Gerhard Schroeder,True
+208,Tony Blair,Tony Blair,True
+959,Tony Blair,Tony Blair,True
