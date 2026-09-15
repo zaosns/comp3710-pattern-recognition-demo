@@ -9,17 +9,13 @@ outputs/**
 !outputs/part1/
 !outputs/part1/benchmark.csv
 !outputs/part1/benchmark.png
-!outputs/part1/harmonics.csv
 !outputs/part1/reconstructions.png
 !outputs/part1/spectrum.png
 !outputs/part1/summary.json
 !outputs/part2/
 !outputs/part2/classification_report.txt
 !outputs/part2/compactness.png
-!outputs/part2/confusion_matrix.png
 !outputs/part2/eigenfaces.png
-!outputs/part2/metrics.json
-!outputs/part2/predictions.csv
 !outputs/part3_lfw/
 !outputs/part3_lfw/classification_report.txt
 !outputs/part3_lfw/confusion_matrix.png
