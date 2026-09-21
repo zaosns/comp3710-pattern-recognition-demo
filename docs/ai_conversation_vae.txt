@@ -1,0 +1,306 @@
+今天 15:39
+why does the VAE need both reconstruction loss and KL divergence?
+
+Because a VAE has two goals at the same time:
+
+$$ \boxed{\text{reconstruct the input well}} $$
+
+and
+
+$$ \boxed{\text{make the latent space structured and sampleable}} $$
+
+Those two goals come from two different loss terms.
+
+The reconstruction loss answers:
+
+Did the decoder reproduce the MRI image accurately?
+
+If your input is \(x\) and reconstruction is \(\hat{x}\), you might use something like:
+
+$$ L_{\text{recon}} = \|x-\hat{x}\|^2 $$
+
+or binary cross entropy, depending on your output setup.
+
+So if the reconstruction is poor, this loss becomes large.
+
+Without reconstruction loss, the model would have no reason to preserve the actual image content.
+
+The KL divergence answers a different question:
+
+Does the encoder produce latent distributions that stay close to a simple known distribution, usually \(\mathcal N(0,I)\)?
+
+In a VAE, the encoder gives:
+
+$$ \mu $$
+
+and
+
+$$ \log \sigma^2 $$
+
+for each input.
+
+The KL term pushes that distribution toward:
+
+$$ \mathcal N(0, I) $$
+
+The common formula is:
+
+$$ L_{KL} = -\frac12 \sum \left( 1+\log\sigma^2-\mu^2-\sigma^2 \right) $$
+
+Why do you need that?
+
+Imagine you trained with reconstruction loss only.
+
+The model could learn latent codes like:
+
+image A → z = [100, -500, 23, ...]
+image B → z = [-900, 12, 400, ...]
+
+and still reconstruct images perfectly.
+
+But the latent space could become messy and disconnected.
+
+Then if you randomly sample:
+
+$$ z \sim \mathcal N(0,I) $$
+
+the decoder may receive latent points it has never seen before and generate garbage.
+
+The KL term prevents that by making the latent representations occupy a smoother, more organized region.
+
+So:
+
+Reconstruction loss
+        ↓
+"Keep enough information to rebuild the MRI"
+
+KL divergence
+        ↓
+"Keep the latent space smooth and close to N(0, I)"
+
+Together:
+
+$$ \boxed{ L_{\text{VAE}} = L_{\text{reconstruction}} + L_{\text{KL}} } $$
+
+There is a trade-off.
+
+If you care only about reconstruction:
+
+$$ L_{\text{recon}} \text{ only} $$
+
+you are basically closer to a normal autoencoder.
+
+If KL is too strong, the latent codes get very regular, but reconstructions may become blurry because the model is forced to compress everything into a constrained distribution.
+
+That is why some VAEs use:
+
+$$ L = L_{\text{recon}} + \beta L_{KL} $$
+
+where \(\beta\) controls the strength of the KL term.
+
+For your OASIS task, the most useful mental model is:
+
+Reconstruction loss preserves the MRI image. KL divergence organizes the latent space so that nearby points correspond to meaningful variations and new latent samples can be decoded into plausible images.
+
+That second part matters especially because your assignment asks you to visualize the VAE manifold, not just reconstruct images.
+
+how should I combine these two losses in PyTorch?
+
+A simple PyTorch VAE loss can be written as one function that adds the reconstruction term and KL term.
+
+For example:
+
+import torch.nn.functional as F
+
+
+def vae_loss(reconstruction, x, mu, logvar):
+    # Reconstruction loss
+    recon_loss = F.mse_loss(
+        reconstruction,
+        x,
+        reduction="sum"
+    )
+
+    # KL divergence
+    kl_loss = -0.5 * torch.sum(
+        1 + logvar - mu.pow(2) - logvar.exp()
+    )
+
+    # Total VAE loss
+    loss = recon_loss + kl_loss
+
+    return loss, recon_loss, kl_loss
+
+Then during training:
+
+reconstruction, mu, logvar = model(X_batch)
+
+loss, recon_loss, kl_loss = vae_loss(
+    reconstruction,
+    X_batch,
+    mu,
+    logvar,
+)
+
+optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+
+The important line is simply:
+
+loss = recon_loss + kl_loss
+
+which corresponds to:
+
+$$ L_{\text{VAE}} = L_{\text{recon}} + L_{\text{KL}} $$
+
+For the KL part:
+
+kl_loss = -0.5 * torch.sum(
+    1 + logvar - mu.pow(2) - logvar.exp()
+)
+
+remember that:
+
+mu.pow(2)
+
+means:
+
+$$ \mu^2 $$
+
+and:
+
+logvar.exp()
+
+means:
+
+$$ e^{\log\sigma^2} = \sigma^2 $$
+
+so it is implementing:
+
+$$ L_{KL} = -\frac12 \sum \left( 1+\log\sigma^2-\mu^2-\sigma^2 \right) $$
+
+You can also use a weighting coefficient:
+
+beta = 1.0
+
+loss = recon_loss + beta * kl_loss
+
+or:
+
+def vae_loss(
+    reconstruction,
+    x,
+    mu,
+    logvar,
+    beta=1.0,
+):
+    recon_loss = F.mse_loss(
+        reconstruction,
+        x,
+        reduction="sum",
+    )
+
+    kl_loss = -0.5 * torch.sum(
+        1
+        + logvar
+        - mu.pow(2)
+        - logvar.exp()
+    )
+
+    loss = (
+        recon_loss
+        + beta * kl_loss
+    )
+
+    return loss, recon_loss, kl_loss
+
+For your first implementation, I would just use:
+
+beta = 1.0
+
+and not tune it yet.
+
+One thing to watch: with reduction="sum", the magnitude of the reconstruction loss depends on image size and batch size. That isn't inherently wrong, but when printing losses it can look very large. You can divide the epoch totals by the number of samples when reporting them.
+
+So your training logic becomes:
+
+MRI batch
+   ↓
+VAE
+   ↓
+reconstruction, mu, logvar
+   ↓
+reconstruction loss
++
+KL divergence
+   ↓
+total loss
+   ↓
+backward()
+   ↓
+optimizer.step()
+
+The PDF requires you to train the VAE and visualize its learned manifold, but it does not prescribe the exact loss implementation, so this is the standard PyTorch VAE formulation rather than code directly specified by the sheet.
+
+今天 16:58
+should I use MSE or binary cross entropy for my VAE reconstruction loss?
+
+For your OASIS MRI VAE, I’d start with MSE.
+
+The PDF only says to build and train a VAE on the preprocessed OASIS MRI data and visualize the learned manifold; it does not specify whether reconstruction loss should be MSE or BCE.
+
+For grayscale MRI images, MSE is usually the more natural first choice because pixel intensity is continuous:
+
+recon_loss = F.mse_loss(
+    reconstruction,
+    x,
+    reduction="sum",
+)
+
+Conceptually:
+
+$$ L_{\text{MSE}} = \sum_i (\hat{x}_i-x_i)^2 $$
+
+This penalizes differences in reconstructed pixel intensity.
+
+BCE is more natural when each pixel is interpreted like a Bernoulli probability:
+
+$$ x_i \in [0,1] $$
+
+and the decoder ends with something like:
+
+nn.Sigmoid()
+
+Then you could use:
+
+recon_loss = F.binary_cross_entropy(
+    reconstruction,
+    x,
+    reduction="sum",
+)
+
+But even if your MRI is normalized to [0,1], the pixels are still really continuous intensity values, not genuinely binary values. So for your assignment, I would use:
+
+MSE + KL divergence
+
+as the baseline.
+
+For example:
+
+def vae_loss(reconstruction, x, mu, logvar):
+    recon_loss = F.mse_loss(
+        reconstruction,
+        x,
+        reduction="sum",
+    )
+
+    kl_loss = -0.5 * torch.sum(
+        1 + logvar - mu.pow(2) - logvar.exp()
+    )
+
+    loss = recon_loss + kl_loss
+
+    return loss, recon_loss, kl_loss
+
+The main thing is to keep your decoder output consistent with your preprocessing. If your MRI tensors are normalized to [0,1], using a final Sigmoid() is reasonable. If you use a different normalization range, then you should reconsider the decoder output activation accordingly.

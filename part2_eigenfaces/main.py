@@ -72,6 +72,7 @@ def main(show=False):
         y,
         test_size=0.25,
         random_state=42,
+        stratify=y,
     )
 
     n_components = 150
@@ -91,7 +92,7 @@ def main(show=False):
     plt.savefig(OUTPUT_DIR / "eigenfaces.png", dpi=180, bbox_inches="tight")
 
     # Plot cumulative explained variance (compactness).
-    explained_variance = (S**2) / (n_samples - 1)
+    explained_variance = (S**2) / (X_train.shape[0] - 1)
     total_var = explained_variance.sum()
     explained_variance_ratio = explained_variance / total_var
     ratio_cumsum = np.cumsum(explained_variance_ratio)
@@ -108,6 +109,7 @@ def main(show=False):
         n_estimators=150,
         max_depth=15,
         max_features=150,
+        random_state=42,
     )
     estimator.fit(X_transformed, y_train)
 

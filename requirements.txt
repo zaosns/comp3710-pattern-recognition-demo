@@ -1,5 +1,6 @@
 matplotlib
 numpy
+Pillow
 pytest
 scikit-learn
 torch
