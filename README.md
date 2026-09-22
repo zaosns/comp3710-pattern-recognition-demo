@@ -8,7 +8,8 @@ My code and results for COMP3710 Lab Demonstration 2.
 - [x] Part 2 — Eigenfaces and Random Forest
 - [x] Part 3.1 — LFW CNN
 - [x] Part 3.2 — CIFAR-10 ResNet-18
-- [x] Part 4 — VAE, U-Net and GAN on OASIS
+- [ ] Part 4.1 — Version Control for Teams using Git (in progress)
+- [x] Part 4.4 — VAE, U-Net and GAN on OASIS
 
 ## Setup
 
@@ -102,27 +103,16 @@ sbatch scripts/rangpur_job.slurm \
   --checkpoint checkpoints/part3_cifar10_resnet18_comp3710.pt
 ```
 
-For the live demo, run inference with the trained checkpoint:
+The PDF also requires inference and one training epoch to be demonstrated on
+Rangpur. I will run these live using the saved checkpoint without overwriting
+the reported result.
 
-```bash
-sbatch scripts/rangpur_job.slurm \
-  part3_cnn/dawnbench_resnet18.py \
-  --device cuda --inference-only \
-  --checkpoint checkpoints/part3_cifar10_resnet18_comp3710.pt
-```
+## Part 4.1 — Advanced Git Course
 
-Use separate paths for the required single training epoch so the good checkpoint
-is not overwritten:
+The required second Git short course, **Version Control for Teams using Git**,
+is currently in progress. Completion evidence will be shown during the demo.
 
-```bash
-sbatch scripts/rangpur_job.slurm \
-  part3_cnn/dawnbench_resnet18.py \
-  --device cuda --epochs 1 \
-  --output-dir outputs/part3_demo_epoch \
-  --checkpoint checkpoints/part3_demo_epoch.pt
-```
-
-## Part 4 — OASIS
+## Part 4.4 — OASIS recognition tasks
 
 The Part 4 scripts accept the OASIS ZIP file or its extracted folder through
 `--data-source`.
@@ -166,6 +156,8 @@ label_3: 0.9738
 ```
 
 All four labels are above the required 0.9 DSC.
+The model uses skip connections and categorical four-channel output. Test-set
+inference will be demonstrated live as required by the PDF.
 
 ![U-Net results](outputs/part4_unet_simplified/segmentation_examples.png)
 
