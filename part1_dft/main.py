@@ -18,6 +18,7 @@ harmonics = [1, 3, 5, 20, 50]
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "part1"
 
 
+# Device selection
 def get_device(name="auto"):
     """Select the GPU when one is available."""
     if name == "auto":
@@ -35,6 +36,7 @@ def get_device(name="auto"):
     return device
 
 
+# Part 1A: square wave and Fourier series
 def make_time_axis(N, T=1.0, device="cpu"):
     """Create N evenly spaced samples over [0, T)."""
     if N < 1 or T <= 0:
@@ -58,6 +60,7 @@ def square_wave_fourier(t, f0, N):
     return (4 / torch.pi) * result
 
 
+# Part 1B: direct DFT implementations
 def naive_dft(x):
     """Direct PyTorch DFT on the same device as x; no built-in FFT."""
     if x.ndim != 1 or x.numel() == 0:
@@ -94,6 +97,7 @@ def numpy_naive_dft(x):
     return X
 
 
+# Part 1C: runtime comparison
 def synchronize(device):
     """Wait for asynchronous GPU work before reading the timer."""
     if device.type == "cuda":
@@ -174,6 +178,7 @@ def benchmark_dfts(sizes, device, repeats=3):
     return rows
 
 
+# Part 1 outputs
 def save_results(t, square, signal, rows):
     """Save the three figures and the timing table."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -269,6 +274,7 @@ def save_results(t, square, signal, rows):
     )
 
 
+# Main program
 def main(device_name="auto", repeats=3, show=False):
     device = get_device(device_name)
     t = make_time_axis(N, T, device)
