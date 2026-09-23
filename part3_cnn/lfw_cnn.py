@@ -25,7 +25,7 @@ CHECKPOINT = ROOT / "checkpoints" / "part3_lfw_cnn.pt"
 
 
 class LFWCNN(nn.Module):
-    """Two 3x3 convolution layers with 32 filters, as required by the PDF."""
+    """CNN with two 3x3 convolution layers."""
 
     def __init__(self, num_classes: int = 7) -> None:
         super().__init__()

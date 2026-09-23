@@ -11,7 +11,6 @@ import numpy as np
 import torch
 
 
-# Names and default values follow the lab sheet.
 N = 2048
 T = 1.0
 f0 = 1
@@ -37,19 +36,19 @@ def get_device(name="auto"):
 
 
 def make_time_axis(N, T=1.0, device="cpu"):
-    """Create N samples over [0, T), like endpoint=False in the PDF."""
+    """Create N evenly spaced samples over [0, T)."""
     if N < 1 or T <= 0:
         raise ValueError("N and T must be positive")
     return torch.arange(N, dtype=torch.float32, device=device) * T / N
 
 
 def square_wave(t):
-    """PyTorch version of the square-wave function in the PDF."""
+    """Return a square wave at the sample times."""
     return torch.sign(torch.sin(2.0 * torch.pi * f0 * t))
 
 
 def square_wave_fourier(t, f0, N):
-    """PyTorch version of the square-wave Fourier series in the PDF."""
+    """Approximate a square wave with N odd Fourier terms."""
     if N < 1:
         raise ValueError("N must be positive")
     result = torch.zeros_like(t)
@@ -75,7 +74,7 @@ def naive_dft(x):
 
 
 def naive_dft_gpu(x, device):
-    """The explicit GPU version requested in the lab sheet."""
+    """Run the direct DFT on the selected GPU."""
     if device.type not in {"cuda", "mps"}:
         raise ValueError("naive_dft_gpu requires a GPU device")
     return naive_dft(torch.as_tensor(x, dtype=torch.float32, device=device))
@@ -217,7 +216,7 @@ def save_results(t, square, signal, rows):
     ax2.set_xlim(0, 50)
     ax2.grid(True)
 
-    # Mark the odd harmonics used to construct the square wave, as in the PDF.
+    # Mark the first odd harmonics.
     for i in range(20):
         if i < len(xf) and i % 2 == 1:
             label = f"f{i}: {i}*f0 = {xf[i]:.1f} Hz" if i in {1, 3, 5} else None

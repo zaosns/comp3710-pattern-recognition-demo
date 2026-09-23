@@ -22,7 +22,7 @@ def compute_pca(X_train, X_test, n_components):
     X_train -= mean
     X_test -= mean
 
-    # NumPy's third SVD output is V^T; the PDF names that array V.
+    # NumPy returns V transpose as the third SVD output.
     U, S, V = np.linalg.svd(X_train, full_matrices=False)
     components = V[:n_components]
 
@@ -104,7 +104,7 @@ def main(show=False):
     plt.title("Compactness")
     plt.savefig(OUTPUT_DIR / "compactness.png", dpi=180)
 
-    # Classify the PCA face-space features using the PDF parameters.
+    # Classify the PCA features.
     estimator = RandomForestClassifier(
         n_estimators=150,
         max_depth=15,
