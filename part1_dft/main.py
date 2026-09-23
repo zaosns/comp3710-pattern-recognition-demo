@@ -221,17 +221,32 @@ def save_results(t, square, signal, rows):
     ax2.set_xlim(0, 50)
     ax2.grid(True)
 
-    # Mark the first odd harmonics.
-    for i in range(20):
-        if i < len(xf) and i % 2 == 1:
-            label = f"f{i}: {i}*f0 = {xf[i]:.1f} Hz" if i in {1, 3, 5} else None
-            ax2.axvline(
-                xf[i],
-                color="r",
-                linestyle="--",
-                alpha=0.7,
-                label=label,
-            )
+    # Keep higher harmonics visible without obscuring the spectrum.
+    for i in range(7, min(20, len(xf)), 2):
+        ax2.axvline(
+            xf[i],
+            color="0.65",
+            linestyle=":",
+            linewidth=1.0,
+            alpha=0.45,
+            label="Higher odd harmonics" if i == 7 else None,
+        )
+
+    highlighted = [
+        (1, "tab:red", "--", r"$f_0$ = 1 Hz"),
+        (3, "tab:orange", "-.", r"$3f_0$ = 3 Hz"),
+        (5, "tab:purple", ":", r"$5f_0$ = 5 Hz"),
+    ]
+    for i, color, linestyle, label in highlighted:
+        ax2.axvline(
+            xf[i],
+            color=color,
+            linestyle=linestyle,
+            linewidth=1.6,
+            alpha=0.9,
+            label=label,
+        )
+        ax2.scatter(xf[i], magnitude[i], color=color, s=45, zorder=3)
     ax2.legend()
 
     plt.tight_layout()
