@@ -11,10 +11,10 @@ import numpy as np
 import torch
 
 
-N = 2048
-T = 1.0
-f0 = 1
-harmonics = [1, 3, 5, 20, 50]
+N = 2048  # samples
+T = 1.0  # 1 second
+f0 = 1  # 1 Hz
+harmonics = [1, 3, 5, 20, 50]  # test different numbers of Fourier terms
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "part1"
 
 
@@ -41,36 +41,38 @@ def make_time_axis(N, T=1.0, device="cpu"):
     """Create N evenly spaced samples over [0, T)."""
     if N < 1 or T <= 0:
         raise ValueError("N and T must be positive")
+    # t = [0, 1/2048, 2/2048, ..., 2047/2048] when N=2048 and T=1.
     return torch.arange(N, dtype=torch.float32, device=device) * T / N
-
 
 def square_wave(t):
     """Return a square wave at the sample times."""
-    return torch.sign(torch.sin(2.0 * torch.pi * f0 * t))
+    return torch.sign(torch.sin(2.0 * torch.pi * f0 * t))  # 2πf0t
 
 
-def square_wave_fourier(t, f0, N):
+def square_wave_fourier(t, f0, N):  # N: number of Fourier terms
     """Approximate a square wave with N odd Fourier terms."""
     if N < 1:
         raise ValueError("N must be positive")
     result = torch.zeros_like(t)
     for k in range(N):
-        n = 2 * k + 1
+        n = 2 * k + 1  # get odd harmonics
         result += torch.sin(2 * torch.pi * n * f0 * t) / n
-    return (4 / torch.pi) * result
+    return (4 / torch.pi) * result  # scale the amplitude to about -1 to 1
 
 
 # Part 1B: direct DFT implementations
-def naive_dft(x):
+def naive_dft(x):  # dft_result = naive_dft(signal)
     """Direct PyTorch DFT on the same device as x; no built-in FFT."""
     if x.ndim != 1 or x.numel() == 0:
         raise ValueError("x must be a non-empty one-dimensional signal")
 
-    N = x.numel()
+    N = x.numel()  # number of elements
     x = x.float()
     k = torch.arange(N, dtype=torch.float32, device=x.device).reshape(N, 1)
+    # k = 0, 1, 2, ..., N-1 (column vector)
     n = torch.arange(N, dtype=torch.float32, device=x.device).reshape(1, N)
-    angles = -2 * torch.pi * torch.remainder(k * n, N) / N
+    # n = 0, 1, 2, ..., N-1 (row vector)
+    angles = -2 * torch.pi * torch.remainder(k * n, N) / N  # -2πkn/N
     real = torch.cos(angles) @ x
     imaginary = torch.sin(angles) @ x
     return torch.complex(real, imaginary)

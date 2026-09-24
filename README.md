@@ -19,14 +19,7 @@ I used Python, NumPy, scikit-learn and PyTorch. Install the packages with:
 python -m pip install -r requirements.txt
 ```
 
-Run all tests with:
-
-```bash
-python -m pytest -q
-```
-
-There are currently 22 tests and they all pass. Datasets and model checkpoints
-are not uploaded to GitHub because they are large.
+Datasets and model checkpoints are not uploaded to GitHub because they are large.
 
 ## Part 1 — Fourier series and DFT
 
@@ -42,8 +35,8 @@ This script:
 - compares both direct methods with NumPy FFT for different values of `N`.
 
 The PyTorch DFT does not use a built-in FFT. It runs on CUDA, Apple MPS or CPU.
-All results matched the FFT reference. In my local result, NumPy FFT was fastest,
-followed by the PyTorch DFT on MPS, then the NumPy direct DFT.
+All results matched the FFT reference. In the Rangpur CUDA result, NumPy FFT was
+fastest, followed by the PyTorch direct DFT, then the NumPy direct DFT.
 
 ![Fourier reconstruction](outputs/part1/reconstructions.png)
 

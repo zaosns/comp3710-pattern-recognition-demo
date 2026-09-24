@@ -1,4 +1,4 @@
 {
-  "device": "mps",
+  "device": "cuda",
   "all_results_match_fft": true
 }
