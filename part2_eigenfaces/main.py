@@ -19,7 +19,7 @@ OUTPUT_DIR = PROJECT_ROOT / "outputs" / "part2"
 def compute_pca(X_train, X_test, n_components):
     """Centre the data, compute the SVD, and project into face space."""
     mean = np.mean(X_train, axis=0)
-    X_train -= mean
+    X_train -= mean # centering
     X_test -= mean
 
     # NumPy returns V transpose as the third SVD output.
@@ -56,9 +56,9 @@ def main(show=False):
     )
 
     n_samples, h, w = lfw_people.images.shape
-    X = lfw_people.data
-    n_features = X.shape[1]
-    y = lfw_people.target
+    X = lfw_people.data # stores the input face pixels
+    n_features = X.shape[1] # the number of pixel values used to represent each face.
+    y = lfw_people.target # stores the corresponding person labels
     target_names = lfw_people.target_names
     n_classes = target_names.shape[0]
 
@@ -72,23 +72,26 @@ def main(show=False):
         y,
         test_size=0.25,
         random_state=42,
-        stratify=y,
+        stratify=y, # preserves the class distribution in the training and test sets
     )
 
-    n_components = 150
+    n_components = 150 # 150 components(PCA features)
+
+    # Run PCA and keep the results needed for plotting and classification
     _, _, S, _, components, X_transformed, X_test_transformed = compute_pca(
         X_train,
         X_test,
         n_components,
     )
-    eigenfaces = components.reshape((n_components, h, w))
+    eigenfaces = components.reshape((n_components, h, w)) # Reshape the 150 PCA components into 50 x 37 eigenface images
 
     print(X_transformed.shape)
     print(X_test_transformed.shape)
 
     # Plot the first 12 eigenfaces.
     eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-    plot_gallery(eigenfaces, eigenface_titles, h, w)
+    # for each eigenface
+    plot_gallery(eigenfaces, eigenface_titles, h, w) # draw eigenfaces
     plt.savefig(OUTPUT_DIR / "eigenfaces.png", dpi=180, bbox_inches="tight")
 
     # Plot cumulative explained variance (compactness).

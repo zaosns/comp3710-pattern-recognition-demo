@@ -71,7 +71,7 @@ python -m part3_cnn.lfw_cnn
 
 The CNN has the two required `3x3` convolution layers with 32 filters each,
 followed by dense classification layers. It uses Adam and cross-entropy loss.
-The final Apple MPS run achieved **93.17% test accuracy**.
+The latest Rangpur CUDA run achieved **90.99% test accuracy**.
 
 ![LFW CNN training](outputs/part3_lfw/learning_curves.png)
 
@@ -82,9 +82,9 @@ The Rangpur run used mixed precision on an NVIDIA A100.
 
 Result:
 
-- test accuracy: **94.03%**;
-- total training and evaluation time: **194.9 seconds**;
-- test inference time: **1.04 seconds**.
+- test accuracy: **94.20%**;
+- total training and evaluation time: **178.3 seconds**;
+- test inference time: **0.99 seconds**.
 
 Example training submission:
 
@@ -144,8 +144,8 @@ The targets are four-channel one-hot masks. The test DSC values were:
 ```text
 label_0: 0.9995
 label_1: 0.9521
-label_2: 0.9528
-label_3: 0.9738
+label_2: 0.9530
+label_3: 0.9740
 ```
 
 All four labels are above the required 0.9 DSC.

@@ -30,10 +30,12 @@ class LFWCNN(nn.Module):
     def __init__(self, num_classes: int = 7) -> None:
         super().__init__()
         self.features = nn.Sequential(
+            # First convolutional layer: 1 input channel, 32 filters, 3x3 kernels.
             nn.Conv2d(1, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2),
+            # Second convolutional layer: 32 input channels, 32 filters, 3x3 kernels.
             nn.Conv2d(32, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.ReLU(),
@@ -90,12 +92,23 @@ def train_epoch(model, loader, loss_function, optimizer, device):
     model.train()
     total_loss = 0.0
     total_correct = 0
+    # Step 5 - Batch repetition: repeat Steps 1-4 for every batch.
     for X, y in loader:
         X, y = X.to(device), y.to(device)
+
+        # Clear the gradients left by the previous batch.
         optimizer.zero_grad()
+
+        # Step 1 - Forward pass: pass the images through the network.
         predictions = model(X)
+
+        # Step 2 - Loss function: compare predictions with the correct labels.
         loss = loss_function(predictions, y)
+
+        # Step 3 - Backpropagation: calculate the gradients of the weights.
         loss.backward()
+
+        # Step 4 - Optimizer: update the model weights using the gradients.
         optimizer.step()
         total_loss += loss.item() * len(y)
         total_correct += (predictions.argmax(1) == y).sum().item()
